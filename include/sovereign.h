@@ -6,11 +6,12 @@
 class Sovereign
 {
     public:
-        Sovereign(uint32_t);
+        Sovereign(const uint32_t, const std::string);
 
-        uint32_t getData();
+        std::string merkleRoot();
 
     private:
         uint32_t num;
+        std::string str;
 };
 #endif

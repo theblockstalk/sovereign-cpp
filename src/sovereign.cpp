@@ -1,16 +1,18 @@
 #include "../include/sovereign.h"
+#include "../include/sha256.h"
 
 using std::string;
 using std::cout, std::endl;
 
-Sovereign::Sovereign(uint32_t _num) : num(_num) {
-    cout << "creting sovereign object" << endl;
+Sovereign::Sovereign(const uint32_t _num, const string _str) : num(_num), str(_str) {
+    cout << "Creting sovereign object" << endl;
 }
 
-uint32_t Sovereign::getData() {
-    return num;
-}
+string Sovereign::merkleRoot() {
+    string num_str = std::to_string(num);
+    const string num_hash = sha256(num_str);
+    const string str_hash = sha256(str);
 
-// string Sovereign::getName() {
-//     return this->name;
-// }
+    const string concat = num_hash + str_hash;
+    return sha256(concat);
+}

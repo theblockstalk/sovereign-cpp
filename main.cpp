@@ -1,6 +1,5 @@
 #include <iostream>
 #include "include/sovereign.h"
-#include "include/sha256.h"
 
 using namespace std;
 
@@ -8,11 +7,8 @@ int main()
 {
     cout << "Create a sovereign data entity" << endl;
     
-    Sovereign s = Sovereign(1111);
-
-    cout << s.getData() << endl;
-    string digest = "grape";
-    cout << "sha256(" << digest << ") = " << sha256(digest) << endl;
+    Sovereign data1 = Sovereign(1111, "grape");
+    string data1_proof = data1.merkleRoot(); // Put this on chain
 
     return 0;
 }
